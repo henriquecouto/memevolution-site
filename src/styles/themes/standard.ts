@@ -10,6 +10,12 @@ const standard: DefaultTheme = {
   },
   radius: { small: 15, default: 30, large: 50 },
   spacing: { small: 10, default: 30, large: 70 },
+  typography: {
+    h1: { fontSize: "100px", fontFamily: "Russo One" },
+    h2: { fontSize: "34px", fontFamily: "Russo One" },
+    subtitle: { fontSize: "24px", fontFamily: "Roboto", fontWeight: "normal" },
+    body: { fontSize: "24px", fontFamily: "Russo One" },
+  },
 };
 
 export default standard;

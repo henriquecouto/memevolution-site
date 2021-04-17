@@ -1,4 +1,6 @@
 import { createGlobalStyle } from "styled-components";
+import "./fonts/Roboto/stylesheet.css";
+import "./fonts/RussoOne/stylesheet.css";
 
 const GlobalStyle = createGlobalStyle`
   * {
