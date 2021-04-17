@@ -1,4 +1,5 @@
 import "styled-components";
+import { CSSObject } from "styled-components";
 
 declare module "styled-components" {
   export interface DefaultTheme {
@@ -11,5 +12,11 @@ declare module "styled-components" {
     };
     radius: { small: number; default: number; large: number };
     spacing: { small: number; default: number; large: number };
+    typography: {
+      h1: CSSObject;
+      h2: CSSObject;
+      subtitle: CSSObject;
+      body: CSSObject;
+    };
   }
 }
