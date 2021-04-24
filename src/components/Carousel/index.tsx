@@ -8,6 +8,8 @@ import {
   useRef,
   useState,
 } from "react";
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import Fab from "../Fab";
 
 import * as S from "./Carousel.styles";
 
@@ -23,6 +25,7 @@ const Carousel = forwardRef<HTMLDivElement, CarouselProps>(
     const [itemWidth, setItemWidth] = useState(0);
     const [contentWidth, setContentWidth] = useState(0);
     const [actualPosition, setActualPosition] = useState(0);
+    const [enabledArrows, setEnabledArrows] = useState(false);
 
     const scrollToLast = () => {
       const newActualPosition = itemWidth * (items.length - itemsToRender);
@@ -64,6 +67,9 @@ const Carousel = forwardRef<HTMLDivElement, CarouselProps>(
       scrollToNext,
     ]);
 
+    const enableArrows = () => setEnabledArrows(true);
+    const disableArrows = () => setEnabledArrows(false);
+
     useEffect(() => {
       if (itemRef.current?.clientWidth && !contentWidth) {
         setItemWidth(itemRef.current?.clientWidth);
@@ -81,13 +87,35 @@ const Carousel = forwardRef<HTMLDivElement, CarouselProps>(
     }, [scrollToNextCallback]);
 
     return (
-      <div ref={ref}>
+      <S.CarouselWrapper
+        onMouseEnter={enableArrows}
+        onMouseLeave={disableArrows}
+        ref={ref}
+      >
         <S.ContentWrapper ref={carouselRef} width={contentWidth}>
           {Children.map(items, (item) => cloneElement(item, { ref: itemRef }))}
         </S.ContentWrapper>
-        <button onClick={scrollToPrevious}>previous</button>
-        <button onClick={scrollToNext}>next</button>
-      </div>
+        <S.ArrowLeftWrapper
+          animate={
+            enabledArrows ? { scale: 1, translateY: "-50%" } : { scale: 0 }
+          }
+          transition={{ delay: 0.5 }}
+        >
+          <Fab onClick={scrollToPrevious} variant="secondary">
+            <FiChevronLeft />
+          </Fab>
+        </S.ArrowLeftWrapper>
+        <S.ArrowRightWrapper
+          animate={
+            enabledArrows ? { scale: 1, translateY: "-50%" } : { scale: 0 }
+          }
+          transition={{ delay: 0.5 }}
+        >
+          <Fab onClick={scrollToNext} variant="secondary">
+            <FiChevronRight />
+          </Fab>
+        </S.ArrowRightWrapper>
+      </S.CarouselWrapper>
     );
   }
 );
