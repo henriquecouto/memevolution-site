@@ -93,7 +93,6 @@ const CarouselComponent = forwardRef<HTMLDivElement, CarouselComponentProps>(
         onMouseLeave={disableArrows}
         ref={ref}
       >
-        {JSON.stringify({ isVisible })}
         <S.ContentWrapper ref={carouselRef} width={contentWidth}>
           {Children.map(items, (item) => cloneElement(item, { ref: itemRef }))}
         </S.ContentWrapper>
