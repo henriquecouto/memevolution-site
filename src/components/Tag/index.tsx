@@ -13,7 +13,7 @@ const Tag: FC<TagProps> = ({ children, color }) => {
 
   return (
     <S.TagWrapper color={color || theme.palette.secondary.main}>
-      <Text>{children.toUpperCase()}</Text>
+      <Text>{children.split(" ")[0].toUpperCase()}</Text>
     </S.TagWrapper>
   );
 };
