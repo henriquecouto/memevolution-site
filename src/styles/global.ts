@@ -10,6 +10,11 @@ const GlobalStyle = createGlobalStyle`
     outline: none;
     text-decoration: none;
   }
+  
+  body {
+    height: 130vh;
+    background-color: ${(props) => props.theme.palette.background.main}
+  }
 `;
 
 export default GlobalStyle;

@@ -1,11 +1,15 @@
+import Background from "./components/Background";
 import GlobalStyle from "./styles/global";
+import Header from "./views/Header";
 
 const App = () => {
   return (
-    <div>
+    <>
       <GlobalStyle />
-      MemeEvolution.
-    </div>
+      <Background>
+        <Header />
+      </Background>
+    </>
   );
 };
 
