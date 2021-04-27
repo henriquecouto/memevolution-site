@@ -1,11 +1,4 @@
-import {
-  cloneElement,
-  FC,
-  ReactElement,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { cloneElement, FC, useEffect, useRef, useState } from "react";
 import { useTheme } from "styled-components";
 
 import * as S from "./Timeline.styles";

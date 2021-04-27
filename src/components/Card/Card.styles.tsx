@@ -10,4 +10,5 @@ export const CardWrapper = styled(motion.div)`
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  position: relative;
 `;
