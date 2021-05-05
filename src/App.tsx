@@ -8,7 +8,9 @@ const App = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => setLoading(false), 3000);
+    window.addEventListener("focus", () =>
+      setTimeout(() => setLoading(false), 3000)
+    );
   }, []);
 
   if (loading) {
