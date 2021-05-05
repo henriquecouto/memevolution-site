@@ -1,6 +1,6 @@
 import { motion, useTransform, useViewportScroll } from "framer-motion";
 import { transparentize } from "polished";
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { useTheme } from "styled-components";
 
 import * as S from "./Background.styles";
@@ -28,6 +28,10 @@ const Background: FC = ({ children }) => {
       transparentize(0.1, theme.palette.background.main),
     ]
   );
+
+  useEffect(() => {
+    window.scroll({ top: 0 });
+  }, []);
 
   return (
     <S.BackgroundWrapper style={{ padding }}>
