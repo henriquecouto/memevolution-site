@@ -10,6 +10,7 @@ export const ModalWrapper = styled(motion.div)`
   backdrop-filter: blur(10px);
   --webkit-backdrop-filter: blur(10px);
   padding: ${(props) => props.theme.spacing.large}px;
+  z-index: 1;
   & > div {
     width: 100% !important;
     height: 100%;

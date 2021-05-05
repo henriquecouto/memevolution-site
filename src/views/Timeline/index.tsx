@@ -1,21 +1,14 @@
 import { useTransform, useViewportScroll } from "framer-motion";
-import Card from "../../components/Card";
+import { useState } from "react";
 import Carousel from "../../components/Carousel";
-import Tag from "../../components/Tag";
 import Timeline from "../../components/Timeline";
+import { memesMock } from "../../mocks/memes";
+import Meme from "../../entities/Meme";
 
 import * as S from "./Timeline.styles";
-
-const renderMockedCarouselItem = () => (
-  <div>
-    <Card>
-      <S.ImageContent src="https://cbncuritiba.b-cdn.net/cbn/wp-content/uploads/2019/05/meme.png" />
-      <S.TagWrapper>
-        <Tag color="#212121">Teste</Tag>
-      </S.TagWrapper>
-    </Card>
-  </div>
-);
+import Modal from "../../components/Modal";
+import MemeItem from "./MemeItem";
+import MemeModalContent from "./MemeModalContent";
 
 const TimelineView = () => {
   const { scrollYProgress } = useViewportScroll();
@@ -26,16 +19,36 @@ const TimelineView = () => {
     [window.outerHeight, 0]
   );
 
+  const [modalState, setModalState] = useState<{
+    open: boolean;
+    meme: Meme | undefined;
+  }>({ open: false, meme: undefined });
+
+  const handleModal = (status: boolean, meme?: Meme) => () => {
+    setModalState((old) => ({ ...old, open: status, meme }));
+  };
+
   return (
     <S.TimelineWrapper style={{ translateY }}>
+      <Modal open={modalState.open} onClose={handleModal(false)}>
+        {modalState.meme && (
+          <MemeModalContent data={modalState.meme} handleModal={handleModal} />
+        )}
+      </Modal>
       <Timeline
         items={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((v) => ({
           title: `ANY TITLE ${v}`,
           content: (
             <Carousel
-              items={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(
-                renderMockedCarouselItem
-              )}
+              items={Array.from(Array(10).keys())
+                .map(() => memesMock)
+                .map((item, index) => (
+                  <MemeItem
+                    key={index}
+                    memeInfo={item}
+                    onClick={handleModal(true, item)}
+                  />
+                ))}
             />
           ),
         }))}
