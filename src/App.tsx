@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Background from "./components/Background";
+import Loading from "./components/Loading";
 import GlobalStyle from "./styles/global";
 import Header from "./views/Header";
 import Timeline from "./views/Timeline";
@@ -8,13 +9,16 @@ const App = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    window.addEventListener("focus", () =>
-      setTimeout(() => setLoading(false), 3000)
-    );
+    const stopLoading = () => setTimeout(() => setLoading(false), 3000);
+    if (document.hasFocus()) {
+      stopLoading();
+    } else {
+      window.addEventListener("focus", stopLoading);
+    }
   }, []);
 
   if (loading) {
-    return <h1>Loading...</h1>;
+    return <Loading />;
   }
 
   return (
