@@ -1,6 +1,8 @@
+import Category from "./Category";
+
 export default class Meme {
   address!: string;
-  category!: string;
+  category!: Category;
   year!: number;
   description?: string;
   type!: "image" | "video";
