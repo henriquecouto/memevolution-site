@@ -17,7 +17,7 @@ const MemeItem = forwardRef<
     <Card>
       <S.ImageContent src={memeInfo.address} />
       <S.TagWrapper>
-        <Tag color="#212121">{memeInfo.category}</Tag>
+        <Tag color={memeInfo.category.color}>{memeInfo.category.name}</Tag>
       </S.TagWrapper>
     </Card>
   </S.CardWrapper>
