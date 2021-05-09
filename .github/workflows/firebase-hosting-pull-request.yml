@@ -19,6 +19,7 @@ jobs:
           REACT_APP_FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
           REACT_APP_FIREBASE_MEASUREMENT_ID: ${{ secrets.FIREBASE_MEASUREMENT_ID }}
           file_name: .env.production.local
+      - run: echo $(cat .env.production.local)
       - uses: actions/checkout@v2
       - run: npm install && npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
