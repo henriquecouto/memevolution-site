@@ -9,6 +9,7 @@ jobs:
     steps:
       - name: Create .env file
         run: |
+          ls
           touch .env.production.local
           echo REACT_APP_FIREBASE_API_KEY=${{ secrets.FIREBASE_API_KEY }} >> .env.production.local
           echo REACT_APP_FIREBASE_AUTH_DOMAIN=${{ secrets.FIREBASE_AUTH_DOMAIN }} >> .env.production.local
