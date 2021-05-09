@@ -5,6 +5,8 @@ import standard from "./styles/themes/standard";
 import { StrictMode } from "react";
 import FirebaseCategoryRepository from "./repositories/implementations/FirebaseCategoryRepository";
 
+console.log(process.env)
+
 const firebaseCategoryRepository = new FirebaseCategoryRepository();
 
 (async () =>
