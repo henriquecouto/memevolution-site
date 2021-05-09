@@ -3,12 +3,14 @@ import App from "./App";
 import { ThemeProvider } from "styled-components";
 import standard from "./styles/themes/standard";
 import { StrictMode } from "react";
-import FirebaseCategoryRepository from "./repositories/implementations/FirebaseCategoryRepository";
+// import FirebaseCategoryRepository from "./repositories/implementations/FirebaseCategoryRepository";
 
-const firebaseCategoryRepository = new FirebaseCategoryRepository();
+console.log(process.env)
 
-(async () =>
-  console.log(await firebaseCategoryRepository.getAllCategories()))();
+// const firebaseCategoryRepository = new FirebaseCategoryRepository();
+
+//(async () =>
+// console.log(await firebaseCategoryRepository.getAllCategories()))();
 
 ReactDOM.render(
   <StrictMode>
