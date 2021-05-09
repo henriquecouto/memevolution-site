@@ -3,7 +3,7 @@ import Category from "./Category";
 export default class Meme {
   address!: string;
   category!: Category;
-  year!: number;
+  year!: string;
   description?: string;
   type!: "image" | "video";
 
