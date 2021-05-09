@@ -7,10 +7,10 @@ import FirebaseCategoryRepository from "./repositories/implementations/FirebaseC
 
 console.log(process.env)
 
-const firebaseCategoryRepository = new FirebaseCategoryRepository();
+// const firebaseCategoryRepository = new FirebaseCategoryRepository();
 
-(async () =>
-  console.log(await firebaseCategoryRepository.getAllCategories()))();
+//(async () =>
+// console.log(await firebaseCategoryRepository.getAllCategories()))();
 
 ReactDOM.render(
   <StrictMode>
