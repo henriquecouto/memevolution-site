@@ -4,16 +4,26 @@ import { categoryCollection } from "../../utils/constants/collections";
 import ICategoryRepository from "../CategoryRepository";
 
 export default class FirebaseCategoryRepository implements ICategoryRepository {
-  async getAllCategories(): Promise<Array<Category> | undefined> {
+  categories: Array<Category> = [];
+
+  async loadAllCategories() {
     try {
-      const categories: Array<Category> = [];
       const snapshot = firebaseFirestore.collection(categoryCollection).get();
       (await snapshot).forEach((category) =>
-        categories.push(new Category({ ...(category.data() as Category) }))
+        this.categories.push(
+          new Category({ ...(category.data() as Category), id: category.id })
+        )
       );
-      return categories;
     } catch (error) {
       console.log(error);
     }
+  }
+
+  getCategoryById(id: string): Category {
+    const category = this.categories.find((category) => category?.id === id);
+    if (!category) {
+      return new Category({ name: "Sem Categoria", color: "#212121" });
+    }
+    return category;
   }
 }
