@@ -15,10 +15,7 @@ const Header = () => {
         <Text type="h1" color="primary-main">
           MEMEVOLUTION
         </Text>
-        <Text>
-          Mussum Ipsum, cacilds vidis litro abertis. Si u mundo tá muito
-          paradis?
-        </Text>
+        <Text>Um site com memes memoráveis do Brasil</Text>
       </S.TitleWrapper>
       <S.Scroll src={scroll} style={{ opacity }} />
     </S.HeaderWrapper>
