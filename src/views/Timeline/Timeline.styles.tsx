@@ -23,6 +23,12 @@ export const ImageContent = styled.img`
   height: 280px;
 `;
 
+export const VideoContent = styled.video`
+  min-width: 280px;
+  max-width: 280px;
+  height: 280px;
+`;
+
 export const TagWrapper = styled.div`
   position: absolute;
   bottom: 0;
