@@ -102,7 +102,7 @@ const CarouselComponent = forwardRef<HTMLDivElement, CarouselComponentProps>(
           Number(
             (
               (window.innerWidth -
-                theme.spacing.small * itemsInScreen * (items.length * 1.1)) /
+                theme.spacing.large * (itemsInScreen * 1.8)) /
               itemRef.current?.clientWidth
             ).toFixed(0)
           )

@@ -2,15 +2,16 @@ import { useTransform, useViewportScroll } from "framer-motion";
 import { useState } from "react";
 import Carousel from "../../components/Carousel";
 import Timeline from "../../components/Timeline";
-import { memesMock } from "../../mocks/memes";
 import Meme from "../../entities/Meme";
 
 import * as S from "./Timeline.styles";
 import Modal from "../../components/Modal";
 import MemeItem from "./MemeItem";
 import MemeModalContent from "./MemeModalContent";
+import { useTimeline } from "../../stores/Timeline";
 
 const TimelineView = () => {
+  const { years, loadByCategory } = useTimeline();
   const { scrollYProgress } = useViewportScroll();
 
   const translateY = useTransform(
@@ -32,23 +33,30 @@ const TimelineView = () => {
     <S.TimelineWrapper style={{ translateY }}>
       <Modal open={modalState.open} onClose={handleModal(false)}>
         {modalState.meme && (
-          <MemeModalContent data={modalState.meme} handleModal={handleModal} />
+          <MemeModalContent
+            data={modalState.meme}
+            handleModal={handleModal}
+            listSame={loadByCategory(modalState.meme?.category.id || "")}
+          />
         )}
       </Modal>
       <Timeline
-        items={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((v) => ({
-          title: `ANY TITLE ${v}`,
+        items={years.map(({ name, values }) => ({
+          title: name,
           content: (
             <Carousel
-              items={Array.from(Array(10).keys())
-                .map(() => memesMock)
-                .map((item, index) => (
+              items={
+                values?.map((item, index) => (
                   <MemeItem
                     key={index}
-                    memeInfo={item}
+                    memeInfo={{
+                      ...item,
+                      address: item.address,
+                    }}
                     onClick={handleModal(true, item)}
                   />
-                ))}
+                )) || []
+              }
             />
           ),
         }))}

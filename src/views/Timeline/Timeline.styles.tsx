@@ -19,6 +19,7 @@ export const TimelineWrapper = styled(motion.main)`
 
 export const ImageContent = styled.img`
   min-width: 280px;
+  max-width: 280px;
   height: 280px;
 `;
 
@@ -50,8 +51,8 @@ export const ModalWrapperContent = styled.div`
 
 export const MemesList = styled.div`
   padding: ${(props) => props.theme.spacing.small}px;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  display: flex;
+  flex-wrap: wrap;
   overflow-y: auto;
   overflow-x: hidden;
 `;

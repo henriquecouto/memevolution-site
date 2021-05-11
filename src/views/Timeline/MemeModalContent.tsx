@@ -1,17 +1,21 @@
 import { FC } from "react";
 import Text from "../../components/Text";
 import Meme from "../../entities/Meme";
-import { memesMock } from "../../mocks/memes";
 import MemeItem from "./MemeItem";
 
 import * as S from "./Timeline.styles";
 
 interface MemeModalContentProps {
   data: Meme;
+  listSame: Array<Meme>;
   handleModal: (status: boolean, meme?: Meme) => () => void;
 }
 
-const MemeModalContent: FC<MemeModalContentProps> = ({ data, handleModal }) => {
+const MemeModalContent: FC<MemeModalContentProps> = ({
+  data,
+  handleModal,
+  listSame,
+}) => {
   return (
     <S.ModalWrapper>
       <img src={data?.address} alt="" />
@@ -19,15 +23,13 @@ const MemeModalContent: FC<MemeModalContentProps> = ({ data, handleModal }) => {
         <Text type="h2">{data.description || ""}</Text>
         <Text color="primary-alternative">{data.year.toString()}</Text>
         <S.MemesList>
-          {Array.from(Array(10).keys())
-            .map(() => memesMock)
-            .map((item, index) => (
-              <MemeItem
-                key={index}
-                memeInfo={item}
-                onClick={handleModal(true, item)}
-              />
-            ))}
+          {listSame.map((item, index) => (
+            <MemeItem
+              key={index}
+              memeInfo={item}
+              onClick={handleModal(true, item)}
+            />
+          ))}
         </S.MemesList>
       </S.ModalWrapperContent>
     </S.ModalWrapper>
