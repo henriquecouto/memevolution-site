@@ -41,17 +41,12 @@ export const TimelineProvider: FC<TimelineProviderProps> = ({
   }, [memeRepository]);
 
   useEffect(() => {
-    loadData();
-  }, [loadData]);
-
-  useEffect(() => {
-    const stopLoading = () => setTimeout(() => setLoading(false), 3000);
     if (document.hasFocus()) {
-      stopLoading();
+      loadData();
     } else {
-      window.addEventListener("focus", stopLoading);
+      window.addEventListener("focus", loadData);
     }
-  }, []);
+  }, [loadData]);
 
   const loadByCategory = (id: string) =>
     memeRepository.getMemesByCategory(id) || [];
