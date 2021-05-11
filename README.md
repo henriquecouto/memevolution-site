@@ -2,7 +2,21 @@
 
 ## HOW TO RUN
 
-In the project directory, you can run:
+In the project directory
+
+Create a `.env.development.local` file as follows:
+
+```
+REACT_APP_FIREBASE_API_KEY={yourFirebaseApiKey}
+REACT_APP_FIREBASE_AUTH_DOMAIN={yourFirebaseAuthDomain}
+REACT_APP_FIREBASE_PROJECT_ID={yourFirebaseProjectId}
+REACT_APP_FIREBASE_STORAGE_BUCKET={yourFirebaseStorageBucket}
+REACT_APP_FIREBASE_MESSAGING_SENDER_ID={yourFirebaseMessagingSenderId}
+REACT_APP_FIREBASE_APP_ID={yourFirebaseAppId}
+REACT_APP_FIREBASE_MEASUREMENT_ID={yourFirebaseMeasurementId}
+```
+
+Now, you can run:
 
 ### `yarn start`
 

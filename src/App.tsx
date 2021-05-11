@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Background from "./components/Background";
+import FirebaseCategoryRepository from "./repositories/implementations/FirebaseCategoryRepository";
+import FirebaseMemeRepository from "./repositories/implementations/FirebaseMemeRepository";
+import { TimelineProvider } from "./stores/Timeline";
+import GlobalStyle from "./styles/global";
+import Header from "./views/Header";
+import Timeline from "./views/Timeline";
 
-function App() {
+const categoryRepository = new FirebaseCategoryRepository();
+const memeRepository = new FirebaseMemeRepository(categoryRepository);
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <TimelineProvider memeRepository={memeRepository}>
+      <GlobalStyle />
+
+      <Background>
+        <Header />
+        <Timeline />
+      </Background>
+    </TimelineProvider>
   );
-}
+};
 
 export default App;
