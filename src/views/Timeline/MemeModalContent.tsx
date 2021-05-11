@@ -16,9 +16,14 @@ const MemeModalContent: FC<MemeModalContentProps> = ({
   handleModal,
   listSame,
 }) => {
+  const renderMeme = {
+    image: <img src={data.address} alt={data.description} />,
+    video: <iframe src={data.address} title={data.description} />,
+  };
+
   return (
     <S.ModalWrapper>
-      <img src={data?.address} alt="" />
+      {renderMeme[data.type]}
       <S.ModalWrapperContent>
         <Text type="h2">{data.description || ""}</Text>
         <Text color="primary-alternative">{data.year.toString()}</Text>

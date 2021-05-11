@@ -12,15 +12,24 @@ interface MemeItemProps {
 const MemeItem = forwardRef<
   HTMLDivElement,
   MemeItemProps & HTMLAttributes<HTMLDivElement>
->(({ memeInfo, ...props }, ref) => (
-  <S.CardWrapper {...props} ref={ref}>
-    <Card>
-      <S.ImageContent src={memeInfo.address} />
-      <S.TagWrapper>
-        <Tag color={memeInfo.category.color}>{memeInfo.category.name}</Tag>
-      </S.TagWrapper>
-    </Card>
-  </S.CardWrapper>
-));
+>(({ memeInfo, ...props }, ref) => {
+  const renderMeme = {
+    image: <S.ImageContent src={memeInfo.address} />,
+    video: (
+      <S.VideoContent src={memeInfo.address} title={memeInfo.description} />
+    ),
+  };
+
+  return (
+    <S.CardWrapper {...props} ref={ref}>
+      <Card>
+        {renderMeme[memeInfo.type]}
+        <S.TagWrapper>
+          <Tag color={memeInfo.category.color}>{memeInfo.category.name}</Tag>
+        </S.TagWrapper>
+      </Card>
+    </S.CardWrapper>
+  );
+});
 
 export default MemeItem;
